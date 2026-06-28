@@ -1,0 +1,8 @@
+{
+	"name": "dinoleung.com",
+	"short_name": "Dino",
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#f3efe5",
+	"theme_color": "#223a2d"
+}

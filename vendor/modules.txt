@@ -1,0 +1,7 @@
+# github.com/google/uuid v1.6.0
+## explicit
+github.com/google/uuid
+# github.com/maxence-charriere/go-app/v10 v10.0.0
+## explicit; go 1.21
+github.com/maxence-charriere/go-app/v10/pkg/app
+github.com/maxence-charriere/go-app/v10/pkg/errors
