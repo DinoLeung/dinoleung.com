@@ -21,6 +21,8 @@
 						tinygo
 						just
 						watchexec
+						opentofu
+						awscli2
 					];
 
 					env = {

@@ -16,3 +16,19 @@ watch:
 
 check: wasm
 	go test ./...
+
+infra-fmt:
+	tofu -chdir=infra/opentofu fmt -recursive
+
+infra-init:
+	tofu -chdir=infra/opentofu init -reconfigure
+
+infra-plan:
+	tofu -chdir=infra/opentofu plan
+
+infra-apply:
+	tofu -chdir=infra/opentofu apply
+
+deploy: check
+	aws s3 sync web "s3://$(tofu -chdir=infra/opentofu output -raw site_bucket_name)" --delete
+	aws cloudfront create-invalidation --distribution-id "$(tofu -chdir=infra/opentofu output -raw cloudfront_distribution_id)" --paths "/*"

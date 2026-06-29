@@ -20,3 +20,14 @@ just serve
 just watch
 just check
 ```
+
+## Infrastructure
+
+OpenTofu configuration lives in `infra/opentofu`.
+
+```sh
+just infra-init
+just infra-plan
+just infra-apply
+just deploy
+```
