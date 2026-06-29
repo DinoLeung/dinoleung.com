@@ -15,24 +15,30 @@ func registerRoutes() {
 func (h *home) Render() app.UI {
 	return app.Div().Class("page").Body(
 		app.Main().Class("shell").Body(
-			app.Section().Class("hero").Body(
-				app.A().Class("source-code-button").
-					Href("https://github.com/DinoLeung/dinoleung.com").
-					Target("_blank").
-					Rel("noreferrer").
-					Aria("label", "GitHub").
-					Title("GitHub"),
-				app.P().Class("eyebrow").Text("Dino Leung"),
-				app.H1().Text("Platform Engineer"),
-				app.P().Class("lede").
-					Text("Owned production infrastructure and developer enablement through practical, repeatable systems."),
-			),
+			heroCard(),
 			app.Section().Class("content-grid").Body(
 				contactCard(),
 				aboutCard(),
 				projectsCard(),
 			),
 		),
+	)
+}
+
+func heroCard() app.UI {
+	return app.Section().Class("hero").Body(
+		app.A().Class("source-code-button").
+			Href("https://github.com/DinoLeung/dinoleung.com").
+			Target("_blank").
+			Rel("noreferrer").
+			Aria("label", "GitHub").
+			Title("GitHub"),
+		app.P().Class("eyebrow").Text("Dino Leung"),
+		app.H1().Text("Platform Engineer"),
+		app.P().Class("lede").
+			Text(
+				"Owned production infrastructure and developer enablement through practical, " +
+				"repeatable systems."),
 	)
 }
 
