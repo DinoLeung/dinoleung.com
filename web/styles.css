@@ -111,7 +111,7 @@ p {
 	min-height: 100vh;
 }
 
-.github-button {
+.source-code-button {
 	position: absolute;
 	top: clamp(20px, 4vw, 34px);
 	right: clamp(20px, 4vw, 34px);
@@ -128,15 +128,15 @@ p {
 	text-decoration: none;
 }
 
-.github-button::before {
+.source-code-button::before {
 	width: 44px;
 	height: 44px;
 	content: "";
 	background: currentColor;
-	mask: url("/web/icons/simple-icons/github.svg") center / contain no-repeat;
+	mask: url("/web/icons/lucide/code-xml.svg") center / contain no-repeat;
 }
 
-.github-button:hover {
+.source-code-button:hover {
 	color: var(--ctp-teal);
 }
 

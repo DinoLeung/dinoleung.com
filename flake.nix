@@ -30,7 +30,7 @@
 					};
 
 					shellHook = ''
-						echo "go-app dev shell: go $(go version | awk '{print $3}'), tinygo $(tinygo version | awk '{print $3}')"
+						[ -t 1 ] && echo "go-app dev shell: go $(go version | awk '{print $3}'), tinygo $(tinygo version | awk '{print $3}')"
 					'';
 				};
 			});

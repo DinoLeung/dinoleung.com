@@ -16,7 +16,7 @@ func (h *home) Render() app.UI {
 	return app.Div().Class("page").Body(
 		app.Main().Class("shell").Body(
 			app.Section().Class("hero").Body(
-				app.A().Class("github-button").Href("https://github.com/DinoLeung/dinoleung.com").Target("_blank").Rel("noreferrer").Aria("label", "GitHub").Title("GitHub"),
+				app.A().Class("source-code-button").Href("https://github.com/DinoLeung/dinoleung.com").Target("_blank").Rel("noreferrer").Aria("label", "GitHub").Title("GitHub"),
 				app.P().Class("eyebrow").Text("Home"),
 				app.H1().Text("[headline]"),
 				app.P().Class("lede").Text("[two sentence intro here]"),
