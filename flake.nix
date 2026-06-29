@@ -14,7 +14,7 @@
 			{
 				devShells.default = pkgs.mkShell {
 					packages = with pkgs; [
-						go_1_25
+						go_1_26
 						gopls
 						gotools
 						go-tools
@@ -25,6 +25,7 @@
 
 					env = {
 						GO111MODULE = "on";
+						GOFLAGS = "-mod=mod";
 						GOPROXY = "https://proxy.golang.org,direct";
 					};
 
