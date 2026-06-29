@@ -1,3 +1,5 @@
 .direnv/
 /result
+vendor/
 web/app.wasm
+web/wasm_exec.js
