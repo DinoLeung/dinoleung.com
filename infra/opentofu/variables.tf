@@ -50,3 +50,15 @@ variable "enable_deploy_policy" {
   type        = bool
   default     = true
 }
+
+variable "github_oidc_provider_arn" {
+  description = "Existing GitHub Actions IAM OIDC provider ARN. Leave empty to create one in this stack."
+  type        = string
+  default     = ""
+}
+
+variable "github_oidc_subjects" {
+  description = "Allowed GitHub Actions OIDC subject claims for assuming the deploy role."
+  type        = list(string)
+  default     = ["repo:DinoLeung/dinoleung.com:ref:refs/heads/main"]
+}

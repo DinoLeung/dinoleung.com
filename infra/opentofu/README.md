@@ -8,6 +8,7 @@ This stack provisions the AWS hosting resources for `dinoleung.com`:
 - security response headers
 - optional ACM certificate and Route 53 alias records
 - optional IAM deploy policy for CI or local deploy credentials
+- GitHub Actions OIDC deploy role
 
 ## Usage
 

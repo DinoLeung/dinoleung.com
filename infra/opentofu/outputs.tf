@@ -23,6 +23,11 @@ output "deploy_policy_arn" {
   value       = var.enable_deploy_policy ? aws_iam_policy.deploy[0].arn : null
 }
 
+output "github_actions_deploy_role_arn" {
+  description = "IAM role ARN GitHub Actions can assume for deploys, when enabled."
+  value       = var.enable_deploy_policy ? aws_iam_role.github_actions_deploy[0].arn : null
+}
+
 output "site_urls" {
   description = "Public URLs for the site."
   value = local.use_custom_domain ? [
