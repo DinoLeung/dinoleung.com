@@ -364,4 +364,8 @@ h1 {
 	92.82% {
 		color: var(--ctp-lavender);
 	}
+
+	100% {
+		color: var(--ctp-rosewater);
+	}
 }
