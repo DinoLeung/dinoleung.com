@@ -4,16 +4,25 @@ import "github.com/maxence-charriere/go-app/v11/pkg/app"
 
 type home struct {
 	app.Compo
+	party bool
 }
 
 func registerRoutes() {
 	app.Route("/", func() app.Composer {
 		return &home{}
 	})
+	app.Route("/party", func() app.Composer {
+		return &home{party: true}
+	})
 }
 
 func (h *home) Render() app.UI {
-	return app.Div().Class("page").Body(
+	pageClass := "page"
+	if h.party {
+		pageClass += " party-mode"
+	}
+
+	return app.Div().Class(pageClass).Body(
 		app.Main().Class("shell").Body(
 			heroCard(),
 			app.Section().Class("content-grid").Body(
@@ -37,8 +46,8 @@ func heroCard() app.UI {
 		app.H1().Text("Platform Engineer"),
 		app.P().Class("lede").
 			Text(
-				"Owned production infrastructure and developer enablement through practical, " +
-				"repeatable systems."),
+				"Owned production infrastructure and developer enablement through practical, "+
+					"repeatable systems."),
 	)
 }
 
@@ -79,11 +88,11 @@ func aboutCard() app.UI {
 	return app.Article().Class("card").Body(
 		app.H2().Text("About"),
 		app.P().Text(
-			"I work across AWS, Kubernetes, GitOps, CI/CD, observability, and secure " +
-			"cloud operations, turning platform requirements into systems developers " +
-			"can use without fighting them. I care about reliability, clear deployment " +
-			"paths, and repeatable environments, which is also why NixOS and reproducible " +
-			"local setup interest me."),
+			"I work across AWS, Kubernetes, GitOps, CI/CD, observability, and secure "+
+				"cloud operations, turning platform requirements into systems developers "+
+				"can use without fighting them. I care about reliability, clear deployment "+
+				"paths, and repeatable environments, which is also why NixOS and reproducible "+
+				"local setup interest me."),
 	)
 }
 
