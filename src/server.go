@@ -6,13 +6,15 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
+	"strconv"
 
 	"github.com/maxence-charriere/go-app/v11/pkg/app"
 )
 
 func runServer() {
 	if env("GENERATE_STATIC", "") == "1" {
-		if err := app.GenerateStaticWebsite(env("STATIC_DIR", "dist"), siteHandler()); err != nil {
+		if err := app.GenerateStaticWebsite(env("STATIC_DIR", "dist"), siteHandler(), "/favicon.ico"); err != nil {
 			log.Fatal(err)
 		}
 		return
@@ -33,11 +35,42 @@ func siteHandler() *app.Handler {
 	return &app.Handler{
 		Name:        "dinoleung.com",
 		Title:       "Dino Leung",
-		Description: "Personal site built with go-app and TinyGo.",
+		Description: "Personal site built with ❤️.",
+		ShortName:   "Dino",
+		Icon: app.Icon{
+			Default:  "/web/icons/site/dino-192.png",
+			Large:    "/web/icons/site/dino-512.png",
+			SVG:      "/web/icons/site/dino.svg",
+			Maskable: "/web/icons/site/dino-512.png",
+		},
+		BackgroundColor:   "#eff1f5",
+		ThemeColor:        "#4c4f69",
+		LoadingLabel:      "Loading {progress}%",
+		WasmContentLength: wasmContentLength(),
+		ProxyResources: []app.ProxyResource{
+			{Path: "/favicon.ico", ResourcePath: "/web/favicon.ico"},
+		},
+		CacheableResources: []string{
+			"/web/icons/site/dino.svg",
+			"/web/favicon.ico",
+		},
 		Styles: []string{
 			"/web/styles.css",
 		},
 	}
+}
+
+func wasmContentLength() string {
+	path := filepath.Join("web", "app.wasm")
+	if staticDir := env("STATIC_DIR", ""); staticDir != "" {
+		path = filepath.Join(staticDir, "web", "app.wasm")
+	}
+
+	info, err := os.Stat(path)
+	if err != nil {
+		return ""
+	}
+	return strconv.FormatInt(info.Size(), 10)
 }
 
 func env(key, fallback string) string {
