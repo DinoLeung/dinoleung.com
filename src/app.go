@@ -31,6 +31,7 @@ func heroCard() app.UI {
 			Href("https://github.com/DinoLeung/dinoleung.com").
 			Target("_blank").
 			Rel("noreferrer").
+			Title("View source code for dinoleung.com on GitHub").
 			Aria("label", "View source code for dinoleung.com on GitHub"),
 		app.P().Class("eyebrow").Text("Dino Leung"),
 		app.H1().Text("Platform Engineer"),
