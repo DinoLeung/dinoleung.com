@@ -8,3 +8,5 @@ web/wasm_exec.js
 *.tfvars
 !*.tfvars.example
 infra/opentofu/backend.hcl
+
+dist/

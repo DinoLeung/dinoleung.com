@@ -25,6 +25,7 @@ jobs:
       AWS_REGION: ${{ vars.AWS_REGION }}
       AWS_ROLE_ARN: ${{ vars.AWS_ROLE_ARN }}
       S3_BUCKET: ${{ vars.S3_BUCKET }}
+      CLOUDFRONT_DISTRIBUTION_ID: ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}
 
     steps:
       - name: Checkout
@@ -35,6 +36,7 @@ jobs:
           : "${AWS_REGION:?Set AWS_REGION in the production environment variables}"
           : "${AWS_ROLE_ARN:?Set AWS_ROLE_ARN in the production environment variables}"
           : "${S3_BUCKET:?Set S3_BUCKET in the production environment variables}"
+          : "${CLOUDFRONT_DISTRIBUTION_ID:?Set CLOUDFRONT_DISTRIBUTION_ID in the production environment variables}"
 
       - name: Install Nix
         uses: cachix/install-nix-action@v31
@@ -51,4 +53,7 @@ jobs:
           role-to-assume: ${{ env.AWS_ROLE_ARN }}
 
       - name: Upload site assets
-        run: nix develop --command aws s3 sync web "s3://${S3_BUCKET}" --delete
+        run: nix develop --command aws s3 sync dist "s3://${S3_BUCKET}" --delete
+
+      - name: Invalidate CloudFront cache
+        run: nix develop --command aws cloudfront create-invalidation --distribution-id "${CLOUDFRONT_DISTRIBUTION_ID}" --paths "/*"

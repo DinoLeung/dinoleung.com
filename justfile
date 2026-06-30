@@ -6,15 +6,22 @@ mod:
 
 wasm:
 	install -m 0644 "$(go env GOROOT)/lib/wasm/wasm_exec.js" web/wasm_exec.js
-	GOOS=js GOARCH=wasm go build -o web/app.wasm ./cmd/site
+	GOOS=js GOARCH=wasm go build -o web/app.wasm ./src
+
+static:
+	rm -rf dist
+	mkdir -p dist/web
+	cp -R web/. dist/web/
+	GOOS=js GOARCH=wasm go build -o dist/web/app.wasm ./src
+	GENERATE_STATIC=1 STATIC_DIR=dist go run ./src
 
 serve: wasm
-	go run ./cmd/site
+	go run ./src
 
 watch:
 	watchexec --restart --exts go,css,webmanifest -- just serve
 
-check: wasm
+check: static
 	go test ./...
 
 infra-fmt:
@@ -30,5 +37,5 @@ infra-apply:
 	tofu -chdir=infra/opentofu apply
 
 deploy: check
-	aws s3 sync web "s3://$(tofu -chdir=infra/opentofu output -raw site_bucket_name)" --delete
+	aws s3 sync dist "s3://$(tofu -chdir=infra/opentofu output -raw site_bucket_name)" --delete
 	aws cloudfront create-invalidation --distribution-id "$(tofu -chdir=infra/opentofu output -raw cloudfront_distribution_id)" --paths "/*"
