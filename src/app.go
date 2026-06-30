@@ -28,6 +28,7 @@ func (h *home) Render() app.UI {
 			app.Section().Class("content-grid").Body(
 				contactCard(),
 				aboutCard(),
+				experienceCard(),
 				projectsCard(),
 			),
 		),
@@ -93,6 +94,19 @@ func aboutCard() app.UI {
 				"can use without fighting them. I care about reliability, clear deployment "+
 				"paths, and repeatable environments, which is also why NixOS and reproducible "+
 				"local setup interest me."),
+	)
+}
+
+func experienceCard() app.UI {
+	return app.Article().Class("card").Body(
+		app.H2().Text("Experience"),
+		app.P().Text(
+			"For over six years I was the primary platform engineer behind a $5-7M "+
+				"SaaS product, owning and continuously improving the Kubernetes cluster "+
+				"that powers single-tenant sites across multiple continents. I led the "+
+				"adoption of GitOps for safer, repeatable delivery, and completed a full "+
+				"Crossplane migration to manage cloud infrastructure through Kubernetes-native "+
+				"control planes."),
 	)
 }
 
