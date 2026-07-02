@@ -1,6 +1,7 @@
 {
 	"name": "dinoleung.com",
 	"short_name": "Dino",
+	"description": "Dino Leung is a platform engineer focused on AWS, Kubernetes, GitOps, observability, and reproducible delivery systems.",
 	"start_url": "/",
 	"display": "standalone",
 	"background_color": "#eff1f5",

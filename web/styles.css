@@ -202,11 +202,37 @@ h1 {
 	line-height: 1.65;
 }
 
+.track-record-card {
+	grid-column: span 2;
+}
+
 .contact-list,
-.project-list {
+.project-list,
+.proof-list {
 	display: grid;
 	gap: 14px;
 	margin-top: 16px;
+}
+
+.proof-list {
+	padding: 0;
+	list-style: none;
+}
+
+.proof-list li {
+	display: grid;
+	gap: 5px;
+	padding-left: 16px;
+	border-left: 2px solid color-mix(in srgb, var(--ctp-teal) 42%, transparent);
+	color: var(--ctp-subtext0);
+	font-size: 0.9rem;
+	line-height: 1.5;
+}
+
+.proof-title {
+	color: var(--ctp-text);
+	font-size: 0.95rem;
+	font-weight: 800;
 }
 
 .project-item {
@@ -292,6 +318,10 @@ h1 {
 
 	.content-grid {
 		grid-template-columns: 1fr;
+	}
+
+	.track-record-card {
+		grid-column: auto;
 	}
 }
 

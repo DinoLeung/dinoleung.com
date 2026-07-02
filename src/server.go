@@ -12,6 +12,12 @@ import (
 	"github.com/maxence-charriere/go-app/v11/pkg/app"
 )
 
+const (
+	siteDomain      = "dinoleung.com"
+	siteDescription = "Dino Leung is a platform engineer focused on AWS, Kubernetes, GitOps, observability, and reproducible delivery systems."
+	siteImage       = "/web/icons/site/dino-512.png"
+)
+
 func runServer() {
 	if env("GENERATE_STATIC", "") == "1" {
 		if err := app.GenerateStaticWebsite(env("STATIC_DIR", "dist"), siteHandler(), "/favicon.ico"); err != nil {
@@ -35,7 +41,10 @@ func siteHandler() *app.Handler {
 	return &app.Handler{
 		Name:        "dinoleung.com",
 		Title:       "Dino Leung",
-		Description: "Personal site built with ❤️.",
+		Description: siteDescription,
+		Domain:      siteDomain,
+		Author:      "Dino Leung",
+		Image:       siteImage,
 		ShortName:   "Dino",
 		Icon: app.Icon{
 			Default:  "/web/icons/site/dino-192.png",

@@ -29,6 +29,7 @@ func (h *home) Render() app.UI {
 				contactCard(),
 				aboutCard(),
 				experienceCard(),
+				trackRecordCard(),
 				projectsCard(),
 			),
 		),
@@ -101,12 +102,36 @@ func experienceCard() app.UI {
 	return app.Article().Class("card").Body(
 		app.H2().Text("Experience"),
 		app.P().Text(
-			"For over six years I was the primary platform engineer behind a $5-7M "+
-				"SaaS product, owning and continuously improving the Kubernetes cluster "+
-				"that powers single-tenant sites across multiple continents. I led the "+
-				"adoption of GitOps for safer, repeatable delivery, and completed a full "+
-				"Crossplane migration to manage cloud infrastructure through Kubernetes-native "+
-				"control planes."),
+			"For over six years I was the primary platform engineer behind a "+
+				"SaaS product aligned with $5-7M in business value, owning and "+
+				"continuously improving the Kubernetes cluster that powers single-tenant "+
+				"sites across multiple continents. I led the adoption of GitOps for safer, "+
+				"repeatable delivery, and led a Crossplane migration to manage cloud "+
+				"infrastructure through Kubernetes-native control planes."),
+	)
+}
+
+func trackRecordCard() app.UI {
+	return app.Article().Class("card track-record-card").Body(
+		app.H2().Text("Track record"),
+		app.Ul().Class("proof-list").Body(
+			app.Li().Body(
+				app.Span().Class("proof-title").Text("EKS platform ownership"),
+				app.Span().Text("Owned the production Kubernetes platform behind single-tenant SaaS sites across multiple continents."),
+			),
+			app.Li().Body(
+				app.Span().Class("proof-title").Text("FluxCD + Crossplane GitOps"),
+				app.Span().Text("Migrated cloud infrastructure management into Kubernetes-native control planes with repeatable GitOps delivery."),
+			),
+			app.Li().Body(
+				app.Span().Class("proof-title").Text("Production ingress migration"),
+				app.Span().Text("Moved production ingress from NGINX to Traefik while preserving service availability and deployment clarity."),
+			),
+			app.Li().Body(
+				app.Span().Class("proof-title").Text("Reproducible dev environments"),
+				app.Span().Text("Use Nix to make local tooling and project setup explicit, repeatable, and easier to recover."),
+			),
+		),
 	)
 }
 
